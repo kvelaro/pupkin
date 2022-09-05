@@ -3,4 +3,4 @@ project(pupkin C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(pupkin main.c queue.h)
+add_executable(pupkin src/main.c src/queue/queue.c )

@@ -7,9 +7,16 @@ typedef struct _node {
 } Node;
 
 typedef struct _queue {
-    char *name;
     Node *head;
     Node *tail;
 } Queue;
+
+typedef struct _list {
+    char *name;
+    Queue *queue;
+    struct _list *next;
+} QueueList;
+
+void enqueue(QueueList *list, char *name, void *node);
 
 #endif //PUPKIN_QUEUE_H
