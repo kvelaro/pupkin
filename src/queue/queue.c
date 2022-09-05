@@ -50,14 +50,20 @@ bool enqueue(QueueList **list, const char *name, const Node* data) {
     }
     if(*list) {
         bool queueExists = false;
-        do {
+        while(true) {
             //@todo check when last element taken
-
             if(strcmp((*list)->name, name) == 0) {
                 queueExists = true;
                 addNode((*list)->queue, data);
+                break;
             }
-        } while ((*list)->next != NULL);
+            if((*list)->next != NULL) {
+                *list = (*list)->next;
+            }
+            else {
+                break;
+            }
+        }
         if(queueExists == false) {
             addQueue(&(*list)->next, name, data);
         }

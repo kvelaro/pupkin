@@ -25,5 +25,13 @@ int main() {
     enqueue(&list, "test", n1);
     enqueue(&list, "test", n2);
     enqueue(&list, "test", n3);
+
+    enqueue(&list, "test1", n2);
+    enqueue(&list, "test1", n3);
+    enqueue(&list, "test1", n1);
+
+    enqueue(&list, "test2", n3);
+    enqueue(&list, "test2", n2);
+    enqueue(&list, "test2", n1);
     int a = 1;
 }
