@@ -1,6 +1,8 @@
 #ifndef PUPKIN_QUEUE_H
 #define PUPKIN_QUEUE_H
 
+#include <stdbool.h>
+
 typedef struct _node {
     struct _node *next;
     void *data;
@@ -17,6 +19,12 @@ typedef struct _list {
     struct _list *next;
 } QueueList;
 
-void enqueue(QueueList *list, char *name, void *node);
+bool addQueue(QueueList **list, const char *name, const Node* data);
+
+bool addNode(Queue *queue, const const Node* data);
+
+bool enqueue(QueueList **list, const char *name, const Node* data);
+
+
 
 #endif //PUPKIN_QUEUE_H
