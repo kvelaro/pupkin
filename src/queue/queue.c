@@ -49,13 +49,18 @@ bool enqueue(QueueList **list, const char *name, const Node* data) {
         return false;
     }
     if(*list) {
+        bool queueExists = false;
         do {
             //@todo check when last element taken
 
             if(strcmp((*list)->name, name) == 0) {
+                queueExists = true;
                 addNode((*list)->queue, data);
             }
         } while ((*list)->next != NULL);
+        if(queueExists == false) {
+            addQueue(&(*list)->next, name, data);
+        }
     }
     else {
         addQueue(list, name, data);
