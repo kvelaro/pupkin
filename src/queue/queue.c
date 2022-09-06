@@ -104,6 +104,9 @@ Node* nodeShift(Queue **queue) {
     }
     nptr = qptr->head;
     qptr->head = nptr->next;
+    if(nptr->next == NULL) {
+        qptr->tail = NULL;
+    }
     nptr->next = NULL;
     return nptr;
 }

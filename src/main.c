@@ -65,5 +65,11 @@ int main() {
     Node *nptr3 = dequeue(&list, "test");
     Node *nptr4 = dequeue(&list, "test");
     Node *nptr5 = dequeue(&list, "test");
+
+    free(nptr1);
+    free(nptr2);
+    free(nptr3);
+    free(nptr4);
+    free(nptr5);
     int a = 1;
 }
