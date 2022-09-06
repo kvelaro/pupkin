@@ -29,4 +29,8 @@ void* dequeue(QueueList **list, char *name);
 
 Node* nodeShift(Queue **queue);
 
+bool purge(QueueList **list, char *name);
+
+bool emptify(Queue *queue);
+
 #endif //PUPKIN_QUEUE_H

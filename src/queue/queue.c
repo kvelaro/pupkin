@@ -111,6 +111,32 @@ Node* nodeShift(Queue **queue) {
     return nptr;
 }
 
-void purge(char *queueName) {
+bool purge(QueueList **list, char *name) {
+    if(list == NULL) {
+        return false;
+    }
+    if(*list) {
+        QueueList *lptr = *list;
+        while(true) {
+            //@todo check when last element taken
+            if(strcmp(lptr->name, name) == 0) {
+                return emptify(lptr->queue);
+            }
+            if(lptr->next != NULL) {
+                lptr = lptr->next;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+}
 
+bool emptify(Queue *queue) {
+    Node *nptr;
+    while(queue->head != NULL) {
+        nptr = nodeShift(&queue);
+        free(nptr);
+    }
+    return true;
 }
