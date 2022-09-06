@@ -14,12 +14,12 @@ bool addQueue(QueueList **list, const char *name, const Node* data) {
         return false;
     }
     (*list)->name = (char *) malloc(sizeof(name));
-    (*list)->name = name;
     (*list)->queue = (Queue *) malloc(sizeof (Queue));
-    (*list)->next = NULL;
     if((*list)->name == NULL || (*list)->queue == NULL) {
         return false;
     }
+    (*list)->name = name;
+    (*list)->next = NULL;
     return addNode((*list)->queue, data);
 }
 
@@ -50,22 +50,23 @@ bool enqueue(QueueList **list, const char *name, const Node* data) {
     }
     if(*list) {
         bool queueExists = false;
+        QueueList *lptr = *list;
         while(true) {
             //@todo check when last element taken
-            if(strcmp((*list)->name, name) == 0) {
+            if(strcmp(lptr->name, name) == 0) {
                 queueExists = true;
-                addNode((*list)->queue, data);
+                addNode(lptr->queue, data);
                 break;
             }
-            if((*list)->next != NULL) {
-                *list = (*list)->next;
+            if(lptr->next != NULL) {
+                lptr = lptr->next;
             }
             else {
                 break;
             }
         }
         if(queueExists == false) {
-            addQueue(&(*list)->next, name, data);
+            addQueue(&lptr->next, name, data);
         }
     }
     else {
