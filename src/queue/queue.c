@@ -18,7 +18,7 @@ bool addQueue(QueueList **list, const char *name, const Node* data) {
     if((*list)->name == NULL || (*list)->queue == NULL) {
         return false;
     }
-    (*list)->name = name;
+    (*list)->name = (char *) name;
     (*list)->next = NULL;
     return addNode((*list)->queue, data);
 }
@@ -75,8 +75,37 @@ bool enqueue(QueueList **list, const char *name, const Node* data) {
     return true;
 }
 
-void *dequeue(char *queueName) {
+void* dequeue(QueueList **list, char *name) {
+    if(list == NULL) {
+        return false;
+    }
+    if(*list) {
+        QueueList *lptr = *list;
+        while(true) {
+            //@todo check when last element taken
+            if(strcmp(lptr->name, name) == 0) {
+                return nodeShift(&lptr->queue);
+            }
+            if(lptr->next != NULL) {
+                lptr = lptr->next;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+}
 
+Node* nodeShift(Queue **queue) {
+    Queue *qptr = *queue;
+    Node * nptr;
+    if(qptr == NULL || qptr->head == NULL) {
+        return NULL;
+    }
+    nptr = qptr->head;
+    qptr->head = nptr->next;
+    nptr->next = NULL;
+    return nptr;
 }
 
 void purge(char *queueName) {

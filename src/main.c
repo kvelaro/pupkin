@@ -59,5 +59,11 @@ int main() {
     enqueue(&list, "test2", n7);
     enqueue(&list, "test2", n8);
     enqueue(&list, "test2", n9);
+
+    Node *nptr1 = dequeue(&list, "test");
+    Node *nptr2 = dequeue(&list, "test");
+    Node *nptr3 = dequeue(&list, "test");
+    Node *nptr4 = dequeue(&list, "test");
+    Node *nptr5 = dequeue(&list, "test");
     int a = 1;
 }

@@ -25,6 +25,8 @@ bool addNode(Queue *queue, const const Node* data);
 
 bool enqueue(QueueList **list, const char *name, const Node* data);
 
+void* dequeue(QueueList **list, char *name);
 
+Node* nodeShift(Queue **queue);
 
 #endif //PUPKIN_QUEUE_H
