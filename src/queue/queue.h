@@ -1,7 +1,7 @@
-#ifndef PUPKIN_QUEUE_H
-#define PUPKIN_QUEUE_H
+#ifndef PUUBIE_QUEUE_H
+#define PUUBIE_QUEUE_H
 
-#include <stdbool.h>
+
 
 typedef struct _node {
     struct _node *next;
@@ -33,4 +33,4 @@ bool purge(QueueList **list, char *name);
 
 bool emptify(Queue *queue);
 
-#endif //PUPKIN_QUEUE_H
+#endif //PUUBIE_QUEUE_H

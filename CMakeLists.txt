@@ -3,4 +3,4 @@ project(pupkin C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(pupkin src/main.c src/queue/queue.c )
+add_executable(pupkin src/main.c src/connect/socket.c src/log/syslog.c)

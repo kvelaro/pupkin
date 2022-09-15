@@ -1,7 +1,10 @@
-#include <string.h>
-#include "queue/queue.h"
+#include "connect/socket.h"
 
 int main() {
-    QueueList *list = NULL;
+    //QueueList *list = NULL;
+
+    tcpSocket("localhost", "fido");
+
+
     return 0;
 }
