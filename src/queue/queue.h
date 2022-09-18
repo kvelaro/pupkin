@@ -1,7 +1,7 @@
 #ifndef PUUBIE_QUEUE_H
 #define PUUBIE_QUEUE_H
 
-
+#include <stdbool.h>
 
 typedef struct _node {
     struct _node *next;
