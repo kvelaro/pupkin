@@ -71,7 +71,7 @@ int tcpSocket(const char *host, const char *service)
         sInfo = (sockInfo *)malloc(sizeof(sockInfo));
         getSockInfo(addr->ai_addr, sInfo);
 
-        printf("Server is up and listening on %s:%u\r\n", sInfo->address, sInfo->port);
+        printf("Server is up and running on %s:%u\r\n", sInfo->address, sInfo->port);
         free(sInfo);
         break;
     }
@@ -95,4 +95,42 @@ int tcpSocket(const char *host, const char *service)
         }
     }
 
+}
+
+int udpSocket(const char *host, const char *service)
+{
+    struct addrinfo addrCriteria, *addrInfo;
+    memset(&addrCriteria, 0, sizeof addrCriteria);
+    addrCriteria.ai_family = AF_UNSPEC;
+    addrCriteria.ai_socktype = SOCK_DGRAM;
+    addrCriteria.ai_protocol = IPPROTO_UDP;
+    //addrCriteria.ai_flags = AI_PASSIVE;
+
+    int rtVal = getaddrinfo(host, service, &addrCriteria, &addrInfo);
+    if(rtVal != 0) {
+        logit(LOG_ERR, "getaddrinfo() failed", 1);
+    }
+
+    int sock = -1;
+    for(struct addrinfo *addr = addrInfo; addr != NULL; addr = addrInfo->ai_next) {
+        sock = socket(addr->ai_family, addr->ai_socktype, addr->ai_protocol);
+        if(sock < 0) {
+            logit(LOG_INFO, "not a valid structure", 0);
+            continue;
+        }
+        rtVal = bind(sock, addr->ai_addr, addr->ai_addrlen);
+        if(rtVal < 0) {
+            logit(LOG_ERR, "bind() error", 1);
+        }
+        sockInfo *sInfo;
+        sInfo = (sockInfo *)malloc(sizeof(sockInfo));
+        getSockInfo(addr->ai_addr, sInfo);
+
+        printf("Server is up and running on %s:%u\r\n", sInfo->address, sInfo->port);
+        free(sInfo);
+        break;
+    }
+    freeaddrinfo(addrInfo);
+
+    while(1) {}
 }

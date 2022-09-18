@@ -8,6 +8,7 @@ typedef struct {
 } sockInfo;
 
 int tcpSocket(const char *host, const char *service);
+int udpSocket(const char *host, const char *service);
 void getSockInfo(const struct sockaddr *address, sockInfo *si);
 
 #endif //PUUBIE_SOCKET_H
